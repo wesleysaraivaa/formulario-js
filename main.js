@@ -4,6 +4,8 @@ const submitButton = document.querySelector("#submit-button");
 
 const errorMessage = document.querySelector(".msg");
 
+const items = document.querySelector(".items");
+
 submitButton.addEventListener('click', (event) => {
     event.preventDefault();
 
@@ -13,6 +15,19 @@ submitButton.addEventListener('click', (event) => {
     if (nameValue === "" || emailValue === "") {
         errorMessage.textContent = "Por favor preencha todos itens!";
         errorMessage.classList = 'error';
+
+        setTimeout(() => {
+            errorMessage.textContent = "";
+            errorMessage.classList = "";
+        }, 3000);
         return;
     }
+
+    const li = document.createElement("li");
+    li.classList = "item";
+    li.innerHTML = `Nome: ${nameValue} <br/> Email: ${emailValue}`;
+    items.appendChild(li);
+
+    nameInput.value = "";
+    emnaiInput.value = "";
 })
